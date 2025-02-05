@@ -1,6 +1,7 @@
 import { Router } from "express";
 import db from "../database/db";
 import { SeekerSchema } from "../database/schema/SeekerSchema";
+import { eq } from "drizzle-orm";
 
 const SeekerRouter = Router();
 
@@ -33,6 +34,18 @@ SeekerRouter.post("/", async (req, res) => {
     const seeker = await db.insert(SeekerSchema).values(body).returning();
     res.status(200).json(seeker);
     res.send("Seeker added successfully");
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//delete seeker
+SeekerRouter.put("/:id", async (req, res) => {
+  try {
+    const body=req.body;
+    const id=Number(req.params.id);
+    const seeker= await db.update(SeekerSchema).set(body).where(eq(SeekerSchema.id,id)).returning();
+    res.status(200).json(seeker);
   } catch (error) {
     res.json(error);
   }
