@@ -1,6 +1,7 @@
 import { Router } from "express"
 import db from "../database/db"
 import { UserSchema } from "../database/schema/UserSchema"
+import { Column } from "drizzle-orm"
 
 const UserRouter = Router()
 
