@@ -1,1 +1,0 @@
-ALTER TABLE `Seeker` ADD `phone` text NOT NULL;

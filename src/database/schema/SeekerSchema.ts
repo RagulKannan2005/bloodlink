@@ -6,7 +6,7 @@ export const SeekerSchema = sqliteTable("Seeker", {
     age:integer("age").notNull(),
     Bloodtype:text("Bloodtype").notNull(),
     TimeofNeed:text("TimeofNeed").notNull(),
-    hospitalname:text("hospitalname").notNull(),
+    // hospitalname:text("hospitalname").notNull(),
     units:integer("units").notNull(),
     reason:text("reason").notNull(),
     phone:text("phone").notNull()
