@@ -5,8 +5,10 @@ import { HospitalSchema } from "./schema/HospitalSchema"
 import { SeekerSchema } from "./schema/SeekerSchema"
 import { DonerSchema } from "./schema/DonerSchema"
 import { TestcenterSchema } from "./schema/TestcenterSchema"
+import { TestdetailsSchema } from "./schema/TestdetailsSchema"
+import { BloodtypeSchema } from "./schema/BloodtypeSchema"
 
 const sqlite = new Database('Database.db')
-const db = drizzle(sqlite, { schema: { UserSchema,HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema }, logger: true })
+const db = drizzle(sqlite, { schema: { UserSchema,HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema,TestdetailsSchema,BloodtypeSchema}, logger: true })
 
 export default db

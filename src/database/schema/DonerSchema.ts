@@ -6,6 +6,7 @@ export const DonerSchema = sqliteTable("Doner", {
   email: text("email").notNull(),
   password: text("password").notNull(),
   age: integer("age").notNull(),
+  gender:text("gender").notNull().$type<"male" | "female"|"others">(),
   dob: text("dob").notNull(),
   Bloodtype: text("Bloodtype").notNull(),
   testid: text("testid").notNull(),

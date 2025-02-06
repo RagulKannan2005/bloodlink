@@ -1,9 +1,16 @@
+CREATE TABLE `Bloodtype` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`btype` text NOT NULL,
+	`prize` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `Doner` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`email` text NOT NULL,
 	`password` text NOT NULL,
 	`age` integer NOT NULL,
+	`gender` text NOT NULL,
 	`dob` text NOT NULL,
 	`Bloodtype` text NOT NULL,
 	`testid` text NOT NULL,
@@ -28,6 +35,7 @@ CREATE TABLE `Seeker` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`age` integer NOT NULL,
+	`gender` text NOT NULL,
 	`Bloodtype` text NOT NULL,
 	`TimeofNeed` text NOT NULL,
 	`units` integer NOT NULL,
@@ -46,6 +54,20 @@ CREATE TABLE `Testcenter` (
 	`licenceno` text NOT NULL,
 	`regdate` text NOT NULL,
 	`labfacility` text NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `Testdetails` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`age` integer NOT NULL,
+	`address` text NOT NULL,
+	`Bloodtype` text NOT NULL,
+	`gender` text NOT NULL,
+	`hgb` text NOT NULL,
+	`wbc` text NOT NULL,
+	`rbc` text NOT NULL,
+	`plt` text NOT NULL,
+	`testdate` text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `User` (
