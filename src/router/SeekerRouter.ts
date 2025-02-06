@@ -42,9 +42,28 @@ SeekerRouter.post("/", async (req, res) => {
 //delete seeker
 SeekerRouter.put("/:id", async (req, res) => {
   try {
-    const body=req.body;
-    const id=Number(req.params.id);
-    const seeker= await db.update(SeekerSchema).set(body).where(eq(SeekerSchema.id,id)).returning();
+    const body = req.body;
+    const id = Number(req.params.id);
+    const seeker = await db
+      .update(SeekerSchema)
+      .set(body)
+      .where(eq(SeekerSchema.id, id))
+      .returning();
+    res.status(200).json(seeker);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//delete seeker
+SeekerRouter.delete("/:id", async (req, res) => {
+  const body = req.body;
+  const id = Number(req.params.id);
+  try {
+    const seeker = await db
+      .delete(SeekerSchema)
+      .where(eq(SeekerSchema.id, id))
+      .returning();
     res.status(200).json(seeker);
   } catch (error) {
     res.json(error);
