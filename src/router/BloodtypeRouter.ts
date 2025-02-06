@@ -18,3 +18,5 @@ BloodtypeRouter.get("/", async (req, res) => {
     res.json(error);
   }
 });
+
+export default BloodtypeRouter;

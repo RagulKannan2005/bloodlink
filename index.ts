@@ -9,6 +9,8 @@ import { SeekerSchema } from "./src/database/schema/SeekerSchema"
 import SeekerRouter from "./src/router/SeekerRouter"
 import DonerRouter from "./src/router/DonerRouter"
 import TestcenterRouter from "./src/router/TestcenterRouter"
+import { BloodtypeRouter } from "./src/router/BloodtypeRouter"
+import TestdetailsRouter from "./src/router/TestdetailsRouter"
 
 const app = express()
 app.use(cors())
@@ -19,6 +21,8 @@ app.use('/api/Hospital', HospitalRouter)
 app.use('/api/Seeker',SeekerRouter)
 app.use('/api/Doner',DonerRouter)
 app.use('/api/Testcenter',TestcenterRouter)
+app.use('/api/Testdetails',TestdetailsRouter)
+app.use('/api/Bloodtype',BloodtypeRouter)
 
 
 app.listen(8080, () => {
