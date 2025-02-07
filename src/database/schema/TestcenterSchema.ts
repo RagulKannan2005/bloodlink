@@ -15,8 +15,7 @@ export const TestcenterSchema = sqliteTable("Testcenter", {
   registered_date: text("regdate").notNull(),
   facility: text("labfacility").notNull().$type<"yes" | "no">(),
 
-  testdetailsId: integer("testdetailsId")
-    .notNull()
-    .references(() => TestdetailsSchema.id, { onDelete: "cascade" }),
+  testdetailsId: integer("testdetailsId").notNull().references(() => TestdetailsSchema.id, { onDelete: "cascade" }),
+
   
 });

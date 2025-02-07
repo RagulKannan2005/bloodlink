@@ -17,7 +17,6 @@ export const SeekerRelation = relations(SeekerSchema, ({ one, many }) => {
       fields: [SeekerSchema.hospitalId],
       references: [HospitalSchema.id],
     }),
-    
   };
 });
 
@@ -35,7 +34,15 @@ export const DonerRelation = relations(DonerSchema, ({ one, many }) => {
     testcenter: one(TestcenterSchema, {
       fields: [DonerSchema.testcenterId],
       references: [TestcenterSchema.id],
-    })
-    
+    }),
+  };
+});
+
+export const TestdetailsRelation = relations(TestcenterSchema, ({ one, many }) => {
+  return {
+    testcenter: one(TestcenterSchema, {
+      fields: [TestdetailsSchema.testdetailsId],
+      references: [TestcenterSchema.id],
+    }),
   };
 });
