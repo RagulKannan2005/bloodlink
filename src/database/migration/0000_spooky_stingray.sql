@@ -1,9 +1,3 @@
-CREATE TABLE `Bloodtype` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`btype` text NOT NULL,
-	`prize` text NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE `Doner` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
@@ -17,7 +11,9 @@ CREATE TABLE `Doner` (
 	`phone` text NOT NULL,
 	`city` text NOT NULL,
 	`state` text NOT NULL,
-	`verified` text NOT NULL
+	`verified` text NOT NULL,
+	`testcenterId` integer NOT NULL,
+	FOREIGN KEY (`testcenterId`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `Hospital` (
@@ -40,7 +36,9 @@ CREATE TABLE `Seeker` (
 	`TimeofNeed` text NOT NULL,
 	`units` integer NOT NULL,
 	`reason` text NOT NULL,
-	`phone` text NOT NULL
+	`phone` text NOT NULL,
+	`hospitalId` integer NOT NULL,
+	FOREIGN KEY (`hospitalId`) REFERENCES `Hospital`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `Testcenter` (
@@ -53,7 +51,9 @@ CREATE TABLE `Testcenter` (
 	`managerphone` text NOT NULL,
 	`licenceno` text NOT NULL,
 	`regdate` text NOT NULL,
-	`labfacility` text NOT NULL
+	`labfacility` text NOT NULL,
+	`testdetailsId` integer NOT NULL,
+	FOREIGN KEY (`testdetailsId`) REFERENCES `Testdetails`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `Testdetails` (
