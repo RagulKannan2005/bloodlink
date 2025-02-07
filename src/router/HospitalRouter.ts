@@ -10,7 +10,7 @@ HospitalRouter.get("/", async (req, res) => {
     const Hospital = await db.query.HospitalSchema.findMany({
       columns: {
         id: true,
-        hospitalname: true,
+        name: true,
         Type: true,
         street: true,
         city: true,

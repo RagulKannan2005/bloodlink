@@ -1,4 +1,5 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { TestcenterSchema } from "./TestcenterSchema";
 import { DonerSchema } from "./DonerSchema";
 
 export const TestdetailsSchema = sqliteTable("Testdetails", {
@@ -13,4 +14,7 @@ export const TestdetailsSchema = sqliteTable("Testdetails", {
   rbc: text("rbc").notNull(),
   plt: text("plt").notNull(),
   testdate: text("testdate").notNull(),
+  
+  testcenterId: integer("testcenterId").notNull().references(() => TestcenterSchema.id, { onDelete: "cascade" }),
+  donerid: integer("donerid").notNull().references(()=>DonerSchema.id,{onDelete:"cascade"}),
 });

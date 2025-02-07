@@ -7,7 +7,7 @@ import { TestdetailsSchema } from "./TestdetailsSchema";
 
 export const HospitalRelation = relations(HospitalSchema, ({ one, many }) => {
   return {
-    seekers: one(SeekerSchema),
+    seekers: many(SeekerSchema), 
   };
 });
 
@@ -20,15 +20,13 @@ export const SeekerRelation = relations(SeekerSchema, ({ one, many }) => {
   };
 });
 
-export const TestcenterRelation = relations(
-  TestcenterSchema,
-  ({ one, many }) => {
-    return {
-      doners: one(DonerSchema),
-      testdetails: many(TestdetailsSchema),
-    };
-  }
-);
+export const TestcenterRelation = relations(TestcenterSchema, ({ one, many }) => {
+  return {
+    doners: many(DonerSchema), 
+    testdetails: many(TestdetailsSchema),
+  };
+});
+
 export const DonerRelation = relations(DonerSchema, ({ one, many }) => {
   return {
     testcenter: one(TestcenterSchema, {
@@ -38,11 +36,15 @@ export const DonerRelation = relations(DonerSchema, ({ one, many }) => {
   };
 });
 
-export const TestdetailsRelation = relations(TestcenterSchema, ({ one, many }) => {
+export const TestdetailsRelation = relations(TestdetailsSchema, ({ one, many }) => {
   return {
     testcenter: one(TestcenterSchema, {
-      fields: [TestdetailsSchema.testdetailsId],
+      fields: [TestdetailsSchema.testcenterId],
       references: [TestcenterSchema.id],
+    }),
+    doner: one(DonerSchema, {
+      fields: [TestdetailsSchema.donerid],
+      references: [DonerSchema.id],
     }),
   };
 });

@@ -7,7 +7,6 @@ CREATE TABLE `Doner` (
 	`gender` text NOT NULL,
 	`dob` text NOT NULL,
 	`Bloodtype` text NOT NULL,
-	`testid` text NOT NULL,
 	`phone` text NOT NULL,
 	`city` text NOT NULL,
 	`state` text NOT NULL,
@@ -51,9 +50,7 @@ CREATE TABLE `Testcenter` (
 	`managerphone` text NOT NULL,
 	`licenceno` text NOT NULL,
 	`regdate` text NOT NULL,
-	`labfacility` text NOT NULL,
-	`testdetailsId` integer NOT NULL,
-	FOREIGN KEY (`testdetailsId`) REFERENCES `Testdetails`(`id`) ON UPDATE no action ON DELETE cascade
+	`labfacility` text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `Testdetails` (
@@ -67,7 +64,11 @@ CREATE TABLE `Testdetails` (
 	`wbc` text NOT NULL,
 	`rbc` text NOT NULL,
 	`plt` text NOT NULL,
-	`testdate` text NOT NULL
+	`testdate` text NOT NULL,
+	`testcenterId` integer NOT NULL,
+	`donerid` integer NOT NULL,
+	FOREIGN KEY (`testcenterId`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`donerid`) REFERENCES `Doner`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `User` (

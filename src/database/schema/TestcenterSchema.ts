@@ -1,7 +1,5 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { register } from "module";
-import { TestdetailsSchema } from "./TestdetailsSchema";
-import { DonerSchema } from "./DonerSchema";
+
 
 export const TestcenterSchema = sqliteTable("Testcenter", {
   id: integer("id").primaryKey().notNull(),
@@ -14,8 +12,4 @@ export const TestcenterSchema = sqliteTable("Testcenter", {
   licence_no: text("licenceno").notNull(),
   registered_date: text("regdate").notNull(),
   facility: text("labfacility").notNull().$type<"yes" | "no">(),
-
-  testdetailsId: integer("testdetailsId").notNull().references(() => TestdetailsSchema.id, { onDelete: "cascade" }),
-
-  
 });

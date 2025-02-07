@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "335a4789-fe4a-407c-8ab6-8c824d692376",
+  "id": "dcc23c58-4812-4099-afd4-6911e0dbaad6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Doner": {
@@ -58,13 +58,6 @@
         },
         "Bloodtype": {
           "name": "Bloodtype",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "testid": {
-          "name": "testid",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -358,31 +351,10 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
-        },
-        "testdetailsId": {
-          "name": "testdetailsId",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "Testcenter_testdetailsId_Testdetails_id_fk": {
-          "name": "Testcenter_testdetailsId_Testdetails_id_fk",
-          "tableFrom": "Testcenter",
-          "tableTo": "Testdetails",
-          "columnsFrom": [
-            "testdetailsId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
@@ -466,10 +438,51 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "testcenterId": {
+          "name": "testcenterId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "donerid": {
+          "name": "donerid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "Testdetails_testcenterId_Testcenter_id_fk": {
+          "name": "Testdetails_testcenterId_Testcenter_id_fk",
+          "tableFrom": "Testdetails",
+          "tableTo": "Testcenter",
+          "columnsFrom": [
+            "testcenterId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "Testdetails_donerid_Doner_id_fk": {
+          "name": "Testdetails_donerid_Doner_id_fk",
+          "tableFrom": "Testdetails",
+          "tableTo": "Doner",
+          "columnsFrom": [
+            "donerid"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
