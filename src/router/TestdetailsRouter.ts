@@ -13,7 +13,7 @@ TestdetailsRouter.get("/", async (req, res) => {
                 name:true,
                 age:true,
                 address:true,
-                Bloodtype:true,
+                bloodtype:true,
                 gender:true,
                 hgb:true,
                 wbc:true,

@@ -6,16 +6,14 @@ export const SeekerSchema = sqliteTable("Seeker", {
   name: text("name").notNull(),
   age: integer("age").notNull(),
   gender: text("gender").notNull().$type<"male" | "female" | "others">(),
-  Bloodtype: text("Bloodtype").notNull(),
-  TimeofNeed: text("TimeofNeed").notNull(),
+  bloodtype: text("Bloodtype").notNull(),
+  timeofNeed: text("TimeofNeed").notNull(),
   // hospitalname:text("hospitalname").notNull(),
   units: integer("units").notNull(),
   reason: text("reason").notNull(),
   phone: text("phone").notNull(),
 
-  hospitalId: integer("hospitalId")
-    .notNull()
-    .references(() => HospitalSchema.id, { onDelete: "cascade" }),
+  
 
   
 });
