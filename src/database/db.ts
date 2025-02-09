@@ -6,10 +6,11 @@ import { SeekerSchema } from "./schema/SeekerSchema"
 import { DonerSchema } from "./schema/DonerSchema"
 import { TestcenterSchema } from "./schema/TestcenterSchema"
 import { TestdetailsSchema } from "./schema/TestdetailsSchema"
+import { relations } from "drizzle-orm"
 
 
 const sqlite = new Database('Database.db')
 sqlite.pragma('foreign_keys=on')
-const db = drizzle(sqlite, { schema: { UserSchema,HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema,TestdetailsSchema}, logger: true })
+const db = drizzle(sqlite, { schema: { UserSchema,HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema,TestdetailsSchema,...relations}, logger: true })
 
 export default db

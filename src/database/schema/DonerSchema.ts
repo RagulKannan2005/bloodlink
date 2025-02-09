@@ -9,7 +9,7 @@ export const DonerSchema = sqliteTable("Doner", {
   age: integer("age").notNull(),
   gender: text("gender").notNull().$type<"male" | "female" | "others">(),
   dob: text("dob").notNull(),
-  Bloodtype: text("Bloodtype").notNull(),
+  bloodtype: text("bloodtype").notNull(),
   phone: text("phone").notNull(),
   city: text("city").notNull(),
   state: text("state").notNull(),
