@@ -4,20 +4,18 @@ import db from "../database/db";
 const TestcenterRouter = Router();
 
 //get testcenter
-TestcenterRouter.get("/", async (req, res) => {
+TestcenterRouter.get("/:id", async (req, res) => {
   try {
+    const id=Number(req.params.id);
     const Testcenter = await db.query.TestcenterSchema.findMany({
-      columns: {
-        id: true,
-        name: true,
-        phone: true,
-        address: true,
-        capacity: true,
-        manager_name: true,
-        manager_phone: true,
-        licence_no: true,
-        registered_date: true,
-        facility: true,
+      where: (TestcenterSchema, { eq }) => eq(TestcenterSchema.id, id),
+      with: {
+        testdetails: {
+          columns: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
     res.status(200).json(Testcenter);
