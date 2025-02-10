@@ -6,7 +6,7 @@ import { SeekerSchema } from "./schema/SeekerSchema"
 import { DonerSchema } from "./schema/DonerSchema"
 import { TestcenterSchema } from "./schema/TestcenterSchema"
 import { TestdetailsSchema } from "./schema/TestdetailsSchema"
-import { relations } from "drizzle-orm"
+import * as relations from "./schema/Relation"
 
 
 const sqlite = new Database('Database.db')

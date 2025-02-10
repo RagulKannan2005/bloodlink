@@ -6,18 +6,23 @@ import { eq } from "drizzle-orm";
 const SeekerRouter = Router();
 
 //get seeker
-SeekerRouter.get("/", async (req, res) => {
+SeekerRouter.get("/:id", async (req, res) => {
   try {
+    const id = Number(req.params.id);
     const Seeker = await db.query.SeekerSchema.findMany({
-      columns: {
-        id: true,
-        name: true,
-        age: true,
-        bloodtype: true,
-        timeofNeed: true,
-        units: true,
-        reason: true,
-        phone: true,
+      where: (SeekerSchema, { eq }) => eq(SeekerSchema.id, id),
+      with: {
+        hospital: {
+          columns: {
+            id: true,
+            name: true,
+            Type: true,
+            street: true,
+            city: true,
+            state: true,
+            phone: true,
+          },
+        },
       },
     });
     res.status(200).json(Seeker);
@@ -29,7 +34,6 @@ SeekerRouter.get("/", async (req, res) => {
 SeekerRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
-
     const seeker = await db.insert(SeekerSchema).values(body).returning();
     res.status(200).json(seeker);
   } catch (error) {
@@ -48,7 +52,22 @@ SeekerRouter.put("/:id", async (req, res) => {
       .where(eq(SeekerSchema.id, id))
       .returning();
     res.status(200).json(seeker);
-  } catch (error) {    
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//delete seeker
+SeekerRouter.delete("/:id", async (req, res) => {
+  const body = req.body;
+  const id = Number(req.params.id);
+  try {
+    const seeker = await db
+      .delete(SeekerSchema)
+      .where(eq(SeekerSchema.id, id))
+      .returning();
+    res.status(200).json(seeker);
+  } catch (error) {
     res.json(error);
   }
 });
