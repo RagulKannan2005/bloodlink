@@ -34,13 +34,12 @@ SeekerRouter.get("/:id", async (req, res) => {
 SeekerRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
-    const seeker = await db.insert(SeekerSchema).values(body).returning();
-    res.status(200).json(seeker);
+    const Seeker = await db.insert(SeekerSchema).values(body).returning();
+    res.status(200).json(Seeker);
   } catch (error) {
-    
-
+    res.json(error);
   }
-});
+})
 
 // Update Seeker
 SeekerRouter.put("/:id", async (req, res) => {
