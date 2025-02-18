@@ -12,5 +12,5 @@ export const SeekerSchema = sqliteTable("Seeker", {
   reason: text("reason").notNull(),
   phone: text("phone").notNull(),
 
-  hospital_id: integer("hospital_id").references(() => HospitalSchema.id),
+  hospital_id: integer("hospital_id").references(() => HospitalSchema.id,{onDelete:"cascade"})
 });

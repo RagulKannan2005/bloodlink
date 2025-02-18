@@ -16,6 +16,6 @@ export const TestdetailsSchema = sqliteTable("Testdetails", {
   testdate: text("testdate").notNull(),
 
   
-  testcenter_id: integer("testcenter_id").references(() => TestcenterSchema.id), 
-  doner_id: integer("doner_id").references(() => DonerSchema.id), 
+  testcenter_id: integer("testcenter_id").references(() => TestcenterSchema.id,{onDelete:"cascade"}), 
+  doner_id: integer("doner_id").references(() => DonerSchema.id,{onDelete:"cascade"}), 
 });

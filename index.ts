@@ -11,8 +11,6 @@ import TestdetailsRouter from "./src/router/TestdetailsRouter"
 const app = express()
 app.use(cors())
 app.use(express.json())
-
-app.use('/api/User', UserRouter)
 app.use('/api/Hospital', HospitalRouter)
 app.use('/api/Seeker',SeekerRouter)
 app.use('/api/Doner',DonerRouter)

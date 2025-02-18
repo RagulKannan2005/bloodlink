@@ -1,6 +1,5 @@
 import { drizzle } from "drizzle-orm/better-sqlite3"
 import Database from "better-sqlite3"
-import { UserSchema } from "./schema/UserSchema"
 import { HospitalSchema } from "./schema/HospitalSchema"
 import { SeekerSchema } from "./schema/SeekerSchema"
 import { DonerSchema } from "./schema/DonerSchema"
@@ -11,6 +10,6 @@ import * as relations from "./schema/Relation"
 
 const sqlite = new Database('Database.db')
 sqlite.pragma('foreign_keys=on')
-const db = drizzle(sqlite, { schema: { UserSchema,HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema,TestdetailsSchema,...relations}, logger: true })
+const db = drizzle(sqlite, { schema: { HospitalSchema,SeekerSchema,DonerSchema,TestcenterSchema,TestdetailsSchema,...relations}, logger: true })
 
 export default db

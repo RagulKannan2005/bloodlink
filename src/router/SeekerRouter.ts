@@ -37,7 +37,8 @@ SeekerRouter.post("/", async (req, res) => {
     const seeker = await db.insert(SeekerSchema).values(body).returning();
     res.status(200).json(seeker);
   } catch (error) {
-    res.status(500).json(error);
+    
+
   }
 });
 

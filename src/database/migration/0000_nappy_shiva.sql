@@ -35,7 +35,7 @@ CREATE TABLE `Seeker` (
 	`reason` text NOT NULL,
 	`phone` text NOT NULL,
 	`hospital_id` integer,
-	FOREIGN KEY (`hospital_id`) REFERENCES `Hospital`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`hospital_id`) REFERENCES `Hospital`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `Testcenter` (
@@ -65,13 +65,6 @@ CREATE TABLE `Testdetails` (
 	`testdate` text NOT NULL,
 	`testcenter_id` integer,
 	`doner_id` integer,
-	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE no action,
-	FOREIGN KEY (`doner_id`) REFERENCES `Doner`(`id`) ON UPDATE no action ON DELETE no action
-);
---> statement-breakpoint
-CREATE TABLE `User` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`name` text NOT NULL,
-	`email` text NOT NULL,
-	`password` text NOT NULL
+	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`doner_id`) REFERENCES `Doner`(`id`) ON UPDATE no action ON DELETE cascade
 );
