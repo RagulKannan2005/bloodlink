@@ -17,6 +17,8 @@ CREATE TABLE `Hospital` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`type` text NOT NULL,
+	`email` text NOT NULL,
+	`password` text NOT NULL,
 	`street` text NOT NULL,
 	`city` text NOT NULL,
 	`state` text NOT NULL,
@@ -67,4 +69,13 @@ CREATE TABLE `Testdetails` (
 	`doner_id` integer,
 	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
 	FOREIGN KEY (`doner_id`) REFERENCES `Doner`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE TABLE `User` (
+	`id` integer PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`phoneno` text NOT NULL,
+	`email` text NOT NULL,
+	`password` text NOT NULL,
+	`role` text NOT NULL
 );
