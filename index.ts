@@ -16,6 +16,7 @@ app.use('/api/Seeker',SeekerRouter)
 app.use('/api/Doner',DonerRouter)
 app.use('/api/Testcenter',TestcenterRouter)
 app.use('/api/Testdetails',TestdetailsRouter)
+app.use('/api/User',UserRouter)
 
 
 app.listen(8080, () => {

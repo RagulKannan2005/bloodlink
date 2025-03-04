@@ -7,6 +7,6 @@ export const UserSchema =sqliteTable("User",{
     phoneno: text("phoneno").notNull(),
     email: text("email").notNull(),
     password: text("password").notNull(),
-    role: text("role").notNull().$type<"Doner"|"Hospital">(),
+    role: text("role").notNull().$type<"Doner"|"Hospital"|"Testcenter">(),
     
 });

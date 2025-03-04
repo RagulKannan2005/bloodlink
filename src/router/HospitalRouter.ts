@@ -12,6 +12,7 @@ HospitalRouter.get("/", async (req, res) => {
         id: true,
         name: true,
         Type: true,
+        email: true,
         street: true,
         city: true,
         state: true,
