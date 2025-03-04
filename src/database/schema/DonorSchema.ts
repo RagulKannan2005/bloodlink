@@ -1,7 +1,7 @@
 
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const DonerSchema = sqliteTable("Doner", {
+export const DonorSchema = sqliteTable("Donor", {
   id: integer("id").primaryKey().notNull(),
   name: text("name").notNull(),
   email: text("email").notNull(),

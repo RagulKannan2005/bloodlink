@@ -4,7 +4,7 @@ import './src/database/db'
 import UserRouter from "./src/router/UserRouter"
 import HospitalRouter from "./src/router/HospitalRouter"
 import SeekerRouter from "./src/router/SeekerRouter"
-import DonerRouter from "./src/router/DonerRouter"
+import DonorRouter from "./src/router/DonorRouter"
 import TestcenterRouter from "./src/router/TestcenterRouter"
 import TestdetailsRouter from "./src/router/TestdetailsRouter"
 
@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use('/api/Hospital', HospitalRouter)
 app.use('/api/Seeker',SeekerRouter)
-app.use('/api/Doner',DonerRouter)
+app.use('/api/Donor',DonorRouter)
 app.use('/api/Testcenter',TestcenterRouter)
 app.use('/api/Testdetails',TestdetailsRouter)
 app.use('/api/User',UserRouter)

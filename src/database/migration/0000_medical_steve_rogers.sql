@@ -1,4 +1,4 @@
-CREATE TABLE `Doner` (
+CREATE TABLE `Donor` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`email` text NOT NULL,
@@ -66,9 +66,9 @@ CREATE TABLE `Testdetails` (
 	`plt` text NOT NULL,
 	`testdate` text NOT NULL,
 	`testcenter_id` integer,
-	`doner_id` integer,
+	`donor_id` integer,
 	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`doner_id`) REFERENCES `Doner`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`donor_id`) REFERENCES `Donor`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `User` (

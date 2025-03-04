@@ -13,6 +13,7 @@ HospitalRouter.get("/", async (req, res) => {
         name: true,
         Type: true,
         email: true,
+        password: true,
         street: true,
         city: true,
         state: true,
@@ -31,40 +32,38 @@ HospitalRouter.get("/", async (req, res) => {
 HospitalRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
-    const hospital = await db.insert(HospitalSchema).values(body).returning();
-    res.status(200).json(hospital);
+    const Hospital = await db.insert(HospitalSchema).values(body).returning();
+    res.status(200).json(Hospital);
   } catch (error) {
     res.json(error);
   }
-});
-// Update Hospital
+})
+//put hospital
 HospitalRouter.put("/:id", async (req, res) => {
-  const body = req.body;
-  const id = Number(req.params.id);
   try {
-    const hospital = await db
+    const id = Number(req.params.id);
+    const body = req.body;
+    const Hospital = await db
       .update(HospitalSchema)
       .set(body)
-      .where(eq(HospitalSchema.id, id))//to update the vale in db use the url like this http://localhost:8080/api/Hospital/1 then update the value in body
+      .where(eq(HospitalSchema.id, id))
       .returning();
-    res.status(200).json(hospital);
+    res.status(200).json(Hospital);
   } catch (error) {
     res.json(error);
   }
-});
-
+})
 //delete hospital
 HospitalRouter.delete("/:id", async (req, res) => {
-  const body = req.body;
-  const id = Number(req.params.id);
   try {
-    const hospital = await db
+    const id = Number(req.params.id);
+    const Hospital = await db
       .delete(HospitalSchema)
-      .where(eq(HospitalSchema.id, id))//to delete the vale in db use the url like this http://localhost:8080/api/Hospital/1 then delete the value in body
+      .where(eq(HospitalSchema.id, id))
       .returning();
-    res.status(200).json(hospital);
+    res.status(200).json(Hospital);
   } catch (error) {
-    res.json(error);
+    res.status(500).json(error);
   }
-});
+})
 export default HospitalRouter;

@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
 import { TestcenterSchema } from "./TestcenterSchema";
-import { DonerSchema } from "./DonerSchema";
+import { DonorSchema } from "./DonorSchema";
 import { TestdetailsSchema } from "./TestdetailsSchema";
 import { HospitalSchema } from "./HospitalSchema";
 import { SeekerSchema } from "./SeekerSchema";
@@ -11,7 +11,7 @@ export const TestcenterRelation = relations(TestcenterSchema, ({ many }) => {
   };
 });
 
-export const DonerRelation = relations(DonerSchema, ({ many }) => {
+export const DonerRelation = relations(DonorSchema, ({ many }) => {
   return {
     testdetails: many(TestdetailsSchema), 
   };
@@ -23,9 +23,9 @@ export const TestdetailsRelation = relations(TestdetailsSchema, ({ one }) => {
       fields: [TestdetailsSchema.testcenter_id], 
       references: [TestcenterSchema.id], 
     }),
-    doner: one(DonerSchema, {
-      fields: [TestdetailsSchema.doner_id], 
-      references: [DonerSchema.id], 
+    doner: one(DonorSchema, {
+      fields: [TestdetailsSchema.donor_id], 
+      references: [DonorSchema.id], 
     }),
   };
 });

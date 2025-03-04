@@ -1,11 +1,11 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "fb6c243a-9ebc-4d46-b850-5979b9f60410",
+  "id": "59025056-924b-4db6-8bc2-030f57e9e04e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "Doner": {
-      "name": "Doner",
+    "Donor": {
+      "name": "Donor",
       "columns": {
         "id": {
           "name": "id",
@@ -439,8 +439,8 @@
           "notNull": false,
           "autoincrement": false
         },
-        "doner_id": {
-          "name": "doner_id",
+        "donor_id": {
+          "name": "donor_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
@@ -462,12 +462,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "Testdetails_doner_id_Doner_id_fk": {
-          "name": "Testdetails_doner_id_Doner_id_fk",
+        "Testdetails_donor_id_Donor_id_fk": {
+          "name": "Testdetails_donor_id_Donor_id_fk",
           "tableFrom": "Testdetails",
-          "tableTo": "Doner",
+          "tableTo": "Donor",
           "columnsFrom": [
-            "doner_id"
+            "donor_id"
           ],
           "columnsTo": [
             "id"

@@ -1,14 +1,14 @@
 import { Router } from "express";
 import db from "../database/db";
-import { DonerSchema } from "../database/schema/DonerSchema";
+import { DonorSchema } from "../database/schema/DonorSchema";
 import { eq } from "drizzle-orm";
 
-const DonerRouter = Router();
+const DonorRouter = Router();
 
 //get doner
-DonerRouter.get("/", async (req, res) => {
+DonorRouter.get("/", async (req, res) => {
   try {
-    const Doner = await db.query.DonerSchema.findMany({
+    const Doner = await db.query.DonorSchema.findMany({
       columns: {
         password: false,
       },
@@ -20,38 +20,38 @@ DonerRouter.get("/", async (req, res) => {
 });
 
 //post doner
-DonerRouter.post("/", async (req, res) => {
+DonorRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
-    const doner = await db.insert(DonerSchema).values(body).returning();
-    res.status(200).json(doner);
+    const Doner = await db.insert(DonorSchema).values(body).returning();
+    res.status(200).json(Doner);
   } catch (error) {
     res.json(error);
   }
-});
+})
 
 
 // Update Doner
-DonerRouter.put("/:id", async (req, res) => {
+DonorRouter.put("/:id", async (req, res) => {
   const body = req.body;
   const id = Number(req.params.id);
   try {
-    const doner = await db.update(DonerSchema).set(body).where(eq(DonerSchema.id, id)).returning();
+    const doner = await db.update(DonorSchema).set(body).where(eq(DonorSchema.id, id)).returning();
     res.status(200).json(doner);
   } catch (error) {
     res.json(error);
   }
 });
 //delete doner
-DonerRouter.delete("/:id", async (req, res) => {
+DonorRouter.delete("/:id", async (req, res) => {
   const body = req.body;
   const id = Number(req.params.id);
   try {
-    const doner = await db.delete(DonerSchema).where(eq(DonerSchema.id, id)).returning();
+    const doner = await db.delete(DonorSchema).where(eq(DonorSchema.id, id)).returning();
     res.status(200).json(doner);
   } catch (error) {
     res.json(error);
   }
 });
 
-export default DonerRouter;
+export default DonorRouter;
