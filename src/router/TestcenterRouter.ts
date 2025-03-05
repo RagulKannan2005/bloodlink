@@ -18,6 +18,20 @@ TestcenterRouter.get("/", async (req, res) => {
     res.json(error);
   }
 })
+TestcenterRouter.get("/:name",async(req,res)=>{
+  try{
+    const Testcenter =await db.query.TestcenterSchema.findFirst({
+      columns: {
+        licence_no: false,
+      },
+      where: (TestcenterSchema, { eq }) => eq(TestcenterSchema.name, req.params.name),
+    });
+    res.status(200).json(Testcenter);
+  }catch (error) {
+    res.json(error);
+  }
+})
+      
 //post testcenter
 TestcenterRouter.post("/", async (req, res) => {
   try {
@@ -43,5 +57,6 @@ TestcenterRouter.put("/", async (req, res) => {
     res.json(error);
   }
 });
+
 
 export default TestcenterRouter;
