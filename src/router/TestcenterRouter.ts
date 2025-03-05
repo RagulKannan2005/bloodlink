@@ -43,9 +43,9 @@ TestcenterRouter.post("/", async (req, res) => {
   }
 });
 //put testcenter
-TestcenterRouter.put("/", async (req, res) => {
+TestcenterRouter.put("/:id", async (req, res) => {
   try {
-    const id = Number(req.headers["id"]);
+    const id = Number(req.params.id);
     const body = req.body;
     const Testcenter = await db
       .update(TestcenterSchema)
@@ -56,7 +56,20 @@ TestcenterRouter.put("/", async (req, res) => {
   } catch (error) {
     res.json(error);
   }
-});
+})
 
+//delete testcenter
+TestcenterRouter.delete("/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const Testcenter = await db
+      .delete(TestcenterSchema)
+      .where(eq(TestcenterSchema.id, id))
+      .returning();
+    res.status(200).json(Testcenter);
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 export default TestcenterRouter;

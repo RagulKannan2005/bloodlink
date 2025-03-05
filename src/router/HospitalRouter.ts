@@ -5,6 +5,29 @@ import { eq } from "drizzle-orm";
 const HospitalRouter = Router();
 
 //get hospital
+HospitalRouter.get("/", async (req, res) => {
+  try {
+    const Hospital = await db.query.HospitalSchema.findMany({
+      columns: {
+        id: true,
+        name: true,
+        Type: true,
+        email: true,
+        password: true,
+        street: true,
+        city: true,
+        state: true,
+        zip: true,
+        phone: true,
+      },
+    });
+    res.status(200).json(Hospital);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//get by email
 HospitalRouter.get("/:email", async (req, res) => {
   try {
     const Hospital = await db.query.HospitalSchema.findFirst({
