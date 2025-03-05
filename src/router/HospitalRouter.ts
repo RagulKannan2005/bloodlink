@@ -5,9 +5,11 @@ import { eq } from "drizzle-orm";
 const HospitalRouter = Router();
 
 //get hospital
-HospitalRouter.get("/", async (req, res) => {
+HospitalRouter.get("/:email", async (req, res) => {
   try {
-    const Hospital = await db.query.HospitalSchema.findMany({
+    const Hospital = await db.query.HospitalSchema.findFirst({
+      where: (HospitalSchema, { eq }) =>
+        eq(HospitalSchema.email, req.params.email),
       columns: {
         id: true,
         name: true,
@@ -37,7 +39,7 @@ HospitalRouter.post("/", async (req, res) => {
   } catch (error) {
     res.json(error);
   }
-})
+});
 //put hospital
 HospitalRouter.put("/:id", async (req, res) => {
   try {
@@ -52,7 +54,7 @@ HospitalRouter.put("/:id", async (req, res) => {
   } catch (error) {
     res.json(error);
   }
-})
+});
 //delete hospital
 HospitalRouter.delete("/:id", async (req, res) => {
   try {
@@ -65,5 +67,5 @@ HospitalRouter.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 export default HospitalRouter;
