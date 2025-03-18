@@ -1,11 +1,11 @@
 import { Router } from "express";
 import db from "../database/db";
 import { DonorSchema } from "../database/schema/DonorSchema";
-import { eq } from "drizzle-orm";
+import { eq, count } from "drizzle-orm"; // Correct import for `count`
 
 const DonorRouter = Router();
 
-//get doner
+// Get all donors
 DonorRouter.get("/", async (req, res) => {
   try {
     const Doner = await db.query.DonorSchema.findMany({
@@ -19,7 +19,7 @@ DonorRouter.get("/", async (req, res) => {
   }
 });
 
-//post doner
+// Create a new donor
 DonorRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
@@ -28,26 +28,46 @@ DonorRouter.post("/", async (req, res) => {
   } catch (error) {
     res.json(error);
   }
-})
+});
 
+// Count the total number of donors
+DonorRouter.get("/count", async (req, res) => {
+  try {
+    const donorCount = await db
+      .select({ count: count() }) // Use `count` from drizzle-orm
+      .from(DonorSchema);
 
-// Update Doner
+    res.status(200).json({ count: donorCount[0].count }); // Return the count
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+// Update a donor
 DonorRouter.put("/:id", async (req, res) => {
   const body = req.body;
   const id = Number(req.params.id);
   try {
-    const doner = await db.update(DonorSchema).set(body).where(eq(DonorSchema.id, id)).returning();
+    const doner = await db
+      .update(DonorSchema)
+      .set(body)
+      .where(eq(DonorSchema.id, id))
+      .returning();
     res.status(200).json(doner);
   } catch (error) {
     res.json(error);
   }
 });
-//delete doner
+
+// Delete a donor
 DonorRouter.delete("/:id", async (req, res) => {
   const body = req.body;
   const id = Number(req.params.id);
   try {
-    const doner = await db.delete(DonorSchema).where(eq(DonorSchema.id, id)).returning();
+    const doner = await db
+      .delete(DonorSchema)
+      .where(eq(DonorSchema.id, id))
+      .returning();
     res.status(200).json(doner);
   } catch (error) {
     res.json(error);

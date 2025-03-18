@@ -12,11 +12,9 @@ UserRouter.get("/", async (req, res) => {
       columns: {
         id: true,
         name: true,
-        phoneno: true,
         email: true,
-        role: true,
-
         password: true,
+        phoneno: true,
       },
     });
     res.status(200).json(User);
@@ -24,14 +22,32 @@ UserRouter.get("/", async (req, res) => {
     res.json(error);
   }
 });
+UserRouter.get("/:email",async(req,res)=>{
+  try{
+    const User =await db.query.UserSchema.findFirst({
+      columns: {
+        id: true,
+        name: true,
+        email: true,
+        password: true,
+        phoneno: true,
+      },
+      where: (UserSchema, { eq }) => eq(UserSchema.email, req.params.email),
+    });
+    res.status(200).json(User);
+  }catch (error) {
+    res.json(error);
+  }
+
+})
 
 //post user
 UserRouter.post("/", async (req, res) => {
-  try {
+  try{
     const body = req.body;
     const User = await db.insert(UserSchema).values(body).returning();
     res.status(200).json(User);
-  } catch (error) {
+  }catch (error) {
     res.json(error);
   }
 });

@@ -6,9 +6,11 @@ import { eq } from "drizzle-orm";
 const SeekerRouter = Router();
 
 //get Seeker
-SeekerRouter.get("/", async (req, res) => {
+SeekerRouter.get("/:hospital_id", async (req, res) => {
   try {
+    const id = Number(req.params.hospital_id);
     const Seeker = await db.query.SeekerSchema.findMany({
+      where: eq(SeekerSchema.hospital_id, id),
       columns: {
         id: true,
         name: true,

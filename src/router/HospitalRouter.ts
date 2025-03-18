@@ -1,7 +1,7 @@
 import { Router } from "express";
 import db from "../database/db";
 import { HospitalSchema } from "../database/schema/HospitalSchema";
-import { eq } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 const HospitalRouter = Router();
 
 //get hospital
@@ -50,6 +50,26 @@ HospitalRouter.get("/:email", async (req, res) => {
     res.status(200).json(Hospital);
   } catch (error) {
     res.json(error);
+  }
+});
+
+// Get hospital count
+HospitalRouter.get("/count", async (req, res) => {
+  try {
+    const hospitalCount = await db
+      .select({ count: count(HospitalSchema.id) }) // Count the number of hospital IDs
+      .from(HospitalSchema);
+
+    // Extract the count value from the first element of the array
+    const countValue = hospitalCount[0]?.count || 0;
+
+    // Return the count in the response
+    res.status(200).json({ count: countValue });
+  } catch (error) {
+    console.error("Error fetching hospital count:", error); // Log the error for debugging
+    res.status(500).json({
+      error: "Failed to fetch hospital count",
+    });
   }
 });
 
