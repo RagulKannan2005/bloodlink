@@ -39,6 +39,8 @@ SeekerRouter.get("/:hospital_id", async (req, res) => {
     res.json(error);
   }
 });
+
+
 //post seeker
 SeekerRouter.post("/", async (req, res) => {
   try {
