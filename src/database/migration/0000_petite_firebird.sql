@@ -49,6 +49,7 @@ CREATE TABLE `Testcenter` (
 	`managername` text NOT NULL,
 	`managerphone` text NOT NULL,
 	`licenceno` text NOT NULL,
+	`password` text NOT NULL,
 	`regdate` text NOT NULL,
 	`labfacility` text NOT NULL
 );

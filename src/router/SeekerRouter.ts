@@ -4,6 +4,36 @@ import { SeekerSchema } from "../database/schema/SeekerSchema";
 import { eq } from "drizzle-orm";
 
 const SeekerRouter = Router();
+SeekerRouter.get("/timeofNeed", async (req, res) => {
+  try {
+    const Seeker = await db.query.SeekerSchema.findMany({
+      where: eq(SeekerSchema.timeofNeed, "2"),
+      columns: {
+        timeofNeed: true,
+        name: true,
+        age: true,
+        units: true,
+        bloodtype: true,
+      },
+      with: {
+        hospital: {
+          columns: {
+            id: false,
+            password: false,
+          },
+        },
+      },
+    });
+
+    if (Seeker.length === 0) {
+      res.status(404).json({ message: "Seeker not found" });
+    } else {
+      res.status(200).json(Seeker);
+    }
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 //get Seeker
 SeekerRouter.get("/:hospital_id", async (req, res) => {
@@ -21,18 +51,16 @@ SeekerRouter.get("/:hospital_id", async (req, res) => {
         timeofNeed: true,
         units: true,
         reason: true,
-        hospital_id: true
-        
+        hospital_id: true,
       },
       with: {
         hospital: {
-          columns:{
-            id:false,
-            password:false
-
-          }
-      }
-    }
+          columns: {
+            id: false,
+            password: false,
+          },
+        },
+      },
     });
     res.status(200).json(Seeker);
   } catch (error) {
@@ -40,7 +68,26 @@ SeekerRouter.get("/:hospital_id", async (req, res) => {
   }
 });
 
-
+SeekerRouter.get("/", async (req, res) => {
+  try {
+    const Seeker = await db.query.SeekerSchema.findMany({
+      columns: {
+        id:false
+      },
+      with: {
+        hospital: {
+          columns: {
+            id: false,
+            password: false,
+          },
+        },
+      },
+    });
+    res.status(200).json(Seeker);
+  } catch (error) {
+    res.json(error);
+  }
+})
 //post seeker
 SeekerRouter.post("/", async (req, res) => {
   try {
@@ -50,7 +97,7 @@ SeekerRouter.post("/", async (req, res) => {
   } catch (error) {
     res.json(error);
   }
-})
+});
 
 // Update Seeker
 SeekerRouter.put("/:id", async (req, res) => {

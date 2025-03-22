@@ -10,6 +10,7 @@ export const TestcenterSchema = sqliteTable("Testcenter", {
   manager_name: text("managername").notNull(),
   manager_phone: text("managerphone").notNull(),
   licence_no: text("licenceno").notNull(),
+  password: text("password").notNull(),
   registered_date: text("regdate").notNull(),
   facility: text("labfacility").notNull().$type<"yes" | "no">(),
 });

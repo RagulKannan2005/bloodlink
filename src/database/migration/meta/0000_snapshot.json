@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "94ae288c-8dc0-4873-b382-b2c408a910cc",
+  "id": "df7c54f4-2cc7-44a1-a8de-ae814b1565bf",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Donor": {
@@ -326,6 +326,13 @@
         },
         "licenceno": {
           "name": "licenceno",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "password": {
+          "name": "password",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
