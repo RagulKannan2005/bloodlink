@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "df7c54f4-2cc7-44a1-a8de-ae814b1565bf",
+  "id": "6e8cbbc0-4184-4daa-ac46-33e35ad34223",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Donor": {
@@ -434,6 +434,13 @@
         },
         "testdate": {
           "name": "testdate",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "testid": {
+          "name": "testid",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

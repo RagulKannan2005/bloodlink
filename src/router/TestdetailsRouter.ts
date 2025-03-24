@@ -19,6 +19,7 @@ TestdetailsRouter.get("/", async (req, res) => {
         rbc: true,
         plt: true,
         testdate: true,
+        testid: true,
       },
       with: {
         doner: {
@@ -63,6 +64,7 @@ TestdetailsRouter.get("/:id", async (req, res) => {
         rbc: true,
         plt: true,
         testdate: true,
+        testid: true,
       },
       with: {
         doner: {

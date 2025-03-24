@@ -66,6 +66,7 @@ CREATE TABLE `Testdetails` (
 	`rbc` text NOT NULL,
 	`plt` text NOT NULL,
 	`testdate` text NOT NULL,
+	`testid` text NOT NULL,
 	`testcenter_id` integer,
 	`donor_id` integer,
 	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
