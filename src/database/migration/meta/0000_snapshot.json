@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "6e8cbbc0-4184-4daa-ac46-33e35ad34223",
+  "id": "41f568b1-e66a-46b1-805f-6a87ffd9ce4c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Donor": {
@@ -452,13 +452,6 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
-        },
-        "donor_id": {
-          "name": "donor_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
         }
       },
       "indexes": {},
@@ -469,19 +462,6 @@
           "tableTo": "Testcenter",
           "columnsFrom": [
             "testcenter_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "Testdetails_donor_id_Donor_id_fk": {
-          "name": "Testdetails_donor_id_Donor_id_fk",
-          "tableFrom": "Testdetails",
-          "tableTo": "Donor",
-          "columnsFrom": [
-            "donor_id"
           ],
           "columnsTo": [
             "id"

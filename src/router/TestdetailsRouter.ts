@@ -22,14 +22,14 @@ TestdetailsRouter.get("/", async (req, res) => {
         testid: true,
       },
       with: {
-        doner: {
-          columns: {
-            id: true,
-            name: true,
-            email: true,
-            phone: true,
-          },
-        },
+        // doner: {
+        //   columns: {
+        //     id: true,
+        //     name: true,
+        //     email: true,
+        //     phone: true,
+        //   },
+        // },
         testcenter: {
           columns: {
             id: true,
@@ -67,14 +67,14 @@ TestdetailsRouter.get("/:id", async (req, res) => {
         testid: true,
       },
       with: {
-        doner: {
-          columns: {
-            id: true,
-            name: true,
-            email: true,
-            phone: true,
-          },
-        },
+        // doner: {
+        //   columns: {
+        //     id: true,
+        //     name: true,
+        //     email: true,
+        //     phone: true,
+        //   },
+        // },
         testcenter: {
           columns: {
             id: true,
@@ -93,7 +93,7 @@ TestdetailsRouter.get("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 TestdetailsRouter.post("/", async (req, res) => {
   try {
     const body = req.body;
@@ -104,6 +104,48 @@ TestdetailsRouter.post("/", async (req, res) => {
     res.status(200).json(testdetail);
   } catch (error) {
     res.status(500).json(error);
+  }
+});
+
+TestdetailsRouter.get("/testdetails/:testid", async (req, res) => {
+  try {
+    const Testdetails = await db.query.TestdetailsSchema.findFirst({
+      where: eq(TestdetailsSchema.testid, req.params.testid),
+      columns: {
+        id: true,
+        name: true,
+        age: true,
+        bloodtype: true,
+        gender: true,
+        hgb: true,
+        wbc: true,
+        rbc: true,
+        plt: true,
+        testdate: true,
+        testid: true,
+      },
+      with: {
+        testcenter: {
+          columns: {
+            id: true,
+            name: true,
+            manager_name: true,
+            manager_phone: true,
+            phone: true,
+            address: true,
+            facility: true,
+          },
+        },
+      },
+    });
+    res.status(200).json(Testdetails);
+  } catch (error) {
+    res.status(500).json({
+      error: {
+        code: 500,
+        message: "test details not found",
+      },
+    });
   }
 });
 

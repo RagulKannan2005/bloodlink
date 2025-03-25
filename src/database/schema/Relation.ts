@@ -11,22 +11,22 @@ export const TestcenterRelation = relations(TestcenterSchema, ({ many }) => {
   };
 });
 
-export const DonerRelation = relations(DonorSchema, ({ many }) => {
-  return {
-    testdetails: many(TestdetailsSchema), 
-  };
-});
+// export const DonerRelation = relations(DonorSchema, ({ many }) => {
+//   return {
+//     testdetails: many(TestdetailsSchema), 
+//   };
+// });
 
 export const TestdetailsRelation = relations(TestdetailsSchema, ({ one }) => {
   return {
     testcenter: one(TestcenterSchema, {
       fields: [TestdetailsSchema.testcenter_id], 
       references: [TestcenterSchema.id], 
-    }),
-    doner: one(DonorSchema, {
-      fields: [TestdetailsSchema.donor_id], 
-      references: [DonorSchema.id], 
-    }),
+    })
+    // doner: one(DonorSchema, {
+    //   fields: [TestdetailsSchema.donor_id], 
+    //   references: [DonorSchema.id], 
+    // }),
   };
 });
 

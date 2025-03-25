@@ -68,9 +68,7 @@ CREATE TABLE `Testdetails` (
 	`testdate` text NOT NULL,
 	`testid` text NOT NULL,
 	`testcenter_id` integer,
-	`donor_id` integer,
-	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`donor_id`) REFERENCES `Donor`(`id`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`testcenter_id`) REFERENCES `Testcenter`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `User` (
