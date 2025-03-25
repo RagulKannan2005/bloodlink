@@ -8,7 +8,7 @@ export const TestdetailsSchema = sqliteTable("Testdetails", {
   age: integer("age").notNull(),
   address: text("address").notNull(),
   bloodtype: text("bloodtype").notNull(),
-  gender: text("gender").notNull().$type<"male" | "female" | "others">(),
+  gender: text("gender").notNull().$type<"male" | "female" >(),
   hgb: text("hgb").notNull(),
   wbc: text("wbc").notNull(),
   rbc: text("rbc").notNull(),
